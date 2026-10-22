@@ -69,7 +69,19 @@ aux (x:xs) y z = ((((aux xs) (max x y)) (min x z)))
 
 -- A3
 leerHora :: String -> Either String (Int, Int)
-leerHora = undefined
+leerHora [a, b,':', c, d]
+
+    | not (isDigit a) || not (isDigit b) || not (isDigit c) || not (isDigit d) 
+      = Left "formato inválido"
+    | read [a] < 2 && read [b] < 10 && read [c] < 6 && read [d] < 10 
+      = Right (read ([a] ++ [b]), read ([c] ++ [d]))
+    | read [a] == 2 && read [b] < 4 && read [c] < 6 && read [d] < 10 
+      = Right (read ([a] ++ [b]), read ([c] ++ [d]))
+    | read [a] > 2 || (read [a] == 2 && read [b] > 3) 
+    = Left "hora fuera de rango"
+    | read [c] > 5 = Left "minutos fuera de rango"
+    
+leerHora _ = Left "formato inválido"
 
 duracion :: String -> String -> Either String Int
 duracion = undefined
