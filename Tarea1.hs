@@ -1,8 +1,8 @@
--- =====================================================================
+--- =====================================================================
 --  CI-3661 — Tarea 1 (Haskell) — Septiembre–Diciembre 2026
 --
---  Nombre:
---  Carnet:
+--  Nombre: Daniela Gragirena
+--  Carnet: 19-10543
 --
 --  Declaración de uso de herramientas de IA (obligatoria, ver enunciado):
 --
@@ -32,9 +32,24 @@ import Data.Char (isAlphaNum, isDigit, toLower, digitToInt)
 -- maximum, minimum, all, any y cualquier otra función de orden superior.
 -- =====================================================================
 
+import Data.Char
+
 -- A1
 esPalindromo :: String -> Bool
-esPalindromo = undefined
+esPalindromo [] = True
+esPalindromo cadena
+    | limpiarCadena cadena == limpiarCadena (revertir cadena) = True
+    | otherwise = False
+
+limpiarCadena :: String -> String
+limpiarCadena [] = []
+limpiarCadena (x:xs)
+    | isAlphaNum x = [toLower x] ++ limpiarCadena xs
+    | isAlphaNum x == False = limpiarCadena xs
+
+revertir :: String -> String
+revertir [] = []
+revertir (x:xs) = revertir xs ++ [x]
 
 -- A2
 -- Explica aquí, en dos o tres líneas, por qué tu solución recorre la
