@@ -54,9 +54,18 @@ revertir (x:xs) = revertir xs ++ [x]
 -- A2
 -- Explica aquí, en dos o tres líneas, por qué tu solución recorre la
 -- lista una sola vez:
---
+-- Mi solución usa una funcion auxiliar que recibe los mayores y menores
+-- actuales como argumento y la lista que falta por revisar. De aquí los
+-- va comparando simultaneamente con cada elemento de la lista por lo que
+-- al recorrer toda la lista una vez ya tiene tanto el mayor como el menor.
+
 mayorYMenor :: Ord a => [a] -> Maybe (a, a)
-mayorYMenor = undefined
+mayorYMenor [] = Nothing
+mayorYMenor (x:xs)= Just ((((aux xs) x) x))
+
+aux :: Ord a => [a] -> a -> a -> (a, a)
+aux [] y z = (y, z)
+aux (x:xs) y z = ((((aux xs) (max x y)) (min x z)))
 
 -- A3
 leerHora :: String -> Either String (Int, Int)
