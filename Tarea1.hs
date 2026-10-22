@@ -84,7 +84,18 @@ leerHora [a, b,':', c, d]
 leerHora _ = Left "formato inválido"
 
 duracion :: String -> String -> Either String Int
-duracion = undefined
+duracion hora1 hora2 = case leerHora(hora1) of
+    Left mensaje1 -> Left mensaje1
+    Right h1 -> case leerHora(hora2) of
+        Left mensaje2 -> Left mensaje2
+        Right h2 -> Right ((calcular h1) h2)
+
+calcular :: (Int, Int) -> (Int, Int) -> Int
+calcular (a, b) (c, d) 
+    | a == c && b <= d = (d - b) 
+    | a == c && b > d = 1440 + (d - b) 
+    | a > c = (24 - a + c) * 60 + (d - b) 
+    | otherwise = 60 * (c - a) + (d - b) 
 
 -- =====================================================================
 -- Parte B: orden superior.
