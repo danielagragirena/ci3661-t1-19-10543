@@ -124,11 +124,22 @@ movimientosCaballo (n, m) = [ (x, y) | x <- [1..8], y <- [1..8],
     || (x == n - 1 || x == m + 1) && (y == m - 2 || y == m + 2) ]
 
 enDosSaltos :: (Int, Int) -> Int
-enDosSaltos = undefined
+enDosSaltos (a, b) = length (auxEDS dosSaltos)
+    where 
+        unSalto = movimientosCaballo (a, b)
+        lista = map movimientosCaballo unSalto
+        todosDosSaltos = foldr (++) [] lista
+        dosSaltos = filter (\x -> not (elem x unSalto) && x /= (a, b)) todosDosSaltos
+
+auxEDS :: [(Int, Int)] -> [(Int, Int)]
+auxEDS a = foldr (\x acc -> 
+    if elem x acc
+    then acc
+    else x : acc) [] a
 
 -- B3
 miMap :: (a -> b) -> [a] -> [b]
-miMap = undefined
+miMap x = foldr (\a b -> x a : b) []
 
 miFilter :: (a -> Bool) -> [a] -> [a]
 miFilter = undefined
