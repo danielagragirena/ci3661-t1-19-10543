@@ -105,7 +105,17 @@ calcular (a, b) (c, d)
 
 -- B1
 promedioSobreUmbral :: Double -> [Double] -> Maybe Double
-promedioSobreUmbral = undefined
+promedioSobreUmbral _ [] = Nothing
+promedioSobreUmbral a x = case (filter (> a) x) of
+    [] -> Nothing
+    y -> Just ((calcularPromedio y) (largo y))
+
+-- Función obtenida de la clase 3
+largo :: [Double] -> Double
+largo = foldr (\_ n -> 1 + n) 0
+
+calcularPromedio :: [Double] -> Double -> Double
+calcularPromedio lista n = (foldr (+) 0 lista) / n
 
 -- B2
 movimientosCaballo :: (Int, Int) -> [(Int, Int)]
