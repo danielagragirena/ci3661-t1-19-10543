@@ -142,7 +142,13 @@ miMap :: (a -> b) -> [a] -> [b]
 miMap x = foldr (\a b -> x a : b) []
 
 miFilter :: (a -> Bool) -> [a] -> [a]
-miFilter = undefined
+miFilter cond = foldr filtro []
+  where
+    filtro x acc =
+        if cond x
+            then x : acc
+            else acc
 
 miFoldl :: (b -> a -> b) -> b -> [a] -> b
-miFoldl = undefined
+miFoldl a b xs = foldr (\x f acc -> f (a acc x)) id xs b
+
