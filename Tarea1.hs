@@ -5,6 +5,9 @@
 --  Carnet: 19-10543
 --
 --  Declaración de uso de herramientas de IA (obligatoria, ver enunciado):
+--  Se ha utilizado chatGPT de forma exclusiva para dudas acerca del lenguaje
+--  Haskell, sintaxis, funcionamiento de funciones, aclaraciones. 
+--  No se ha utilizado para generacion de codigo.
 --
 -- =====================================================================
 --  No cambies el nombre del módulo ni la lista de exportación, ni las
