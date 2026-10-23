@@ -119,7 +119,9 @@ calcularPromedio lista n = (foldr (+) 0 lista) / n
 
 -- B2
 movimientosCaballo :: (Int, Int) -> [(Int, Int)]
-movimientosCaballo = undefined
+movimientosCaballo (n, m) = [ (x, y) | x <- [1..8], y <- [1..8], 
+    ((x == n - 2 || x == n + 2) && (y == m - 1 || y == m + 1)) 
+    || (x == n - 1 || x == m + 1) && (y == m - 2 || y == m + 2) ]
 
 enDosSaltos :: (Int, Int) -> Int
 enDosSaltos = undefined
